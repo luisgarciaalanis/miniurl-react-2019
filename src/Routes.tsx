@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import AppFrame from './components/AppFrame/AppFrame';
 import MakeTiny from './pages/MakeTiny/MakeTiny';
 import About from './pages/About/About';
-import MakeCustom from './pages/MakeCustom/MakeCustom';
+import MakeCustomTiny from './pages/MakeCustomTiny/MakeCustomTiny';
 
 const history = createBrowserHistory();
 
@@ -25,7 +25,7 @@ class Routes extends React.Component {
                     <AppFrame>
                         <Switch>
                             <Route exact path={routes.Home} component={MakeTiny} />
-                            <Route exact path={routes.Custom} component={MakeCustom} />
+                            <Route exact path={routes.Custom} component={MakeCustomTiny} />
                             <Route exact path={routes.About} component={About} />
                         </Switch>
                     </AppFrame>

@@ -58,7 +58,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
             <div className="make-tiny">
                 <h1>MiniURL</h1>
 
-                <div className="form-group-search">
+                <div className="form-group-search with-alias">
                     <input
                         type="text"
                         name="urlinput"
@@ -66,9 +66,15 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                         onChange={this.onUrlInputChange}
                         value={this.state.url}
                     />
-                    <button onClick={this.onTinifyClicked}>Tinify</button>
+                    <div className="alias">
+                        <label htmlFor="alias-input">http://m.garcia.tv/</label>
+                        <input type="text" name="urlinput" placeholder="Enter Alias" id="alias-input" />
+                        <button>Tinify</button>
+                    </div>
                 </div>
-                <p className="custom-text">Create <Link to="/custom">Custom URL</Link></p>
+
+                <p className="custom-text">Create  <Link to="/">Random URL</Link></p>
+
                 <div className={this.state.showResults ? 'miniurl-created' : 'hidden'}>
                     <div className="overlay"></div>
                     <div className="url-box">
