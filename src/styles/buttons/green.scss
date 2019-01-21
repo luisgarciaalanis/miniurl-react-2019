@@ -1,0 +1,15 @@
+button.green, label.button.green, a.button.green {
+    border-bottom: 1px solid darken($green, 5%);
+    background: $green;
+
+    &:hover {
+        border-color: $green;
+        background: darken($green, 5%);
+    }
+
+    &[disabled=disabled], &:disabled {
+        background: rgba(31, 116, 32, 0.8);
+        color: rgba(255, 255, 255, 0.336);
+        cursor: no-drop;
+    }
+}

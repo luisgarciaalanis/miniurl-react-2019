@@ -1,0 +1,15 @@
+button.grey, a.button.grey {
+    border-bottom: 1px solid darken($gray, 5%);
+    background: $gray;
+
+    &:hover {
+        border-color: $gray;
+        background: darken($gray, 5%);
+    }
+
+    &[disabled=disabled], &:disabled {
+        background: rgba(160, 161, 163, 0.8);
+        color: rgba(255, 255, 255, 0.35);
+        cursor: no-drop;
+    }
+}

@@ -1,0 +1,15 @@
+button.red, a.button.red, span.button.red {
+    border-bottom: 1px solid darken($red, 5%);
+    background: $red;
+
+    &:hover {
+        border-color: $red;
+        background: darken($red, 5%);
+    }
+
+    &[disabled=disabled], &:disabled {
+        background: rgba(195, 63, 63, .8);
+        color: rgba(255, 255, 255, 0.3);
+        cursor: no-drop;
+    }
+}
