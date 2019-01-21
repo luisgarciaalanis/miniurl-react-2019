@@ -1,0 +1,26 @@
+/* Font Names */
+$sans: 'Montserrat', "sans-serif", "Helvetica", "Arial";
+
+/* Dimensions */
+$site-width: 1024px;
+$header-height: 50px;
+
+/* @media breakpoints */
+$mobile: 768px;
+$tablet: 992px;
+$desktop: 1200px;
+
+/* Z-Index levels */
+$level1: 1;
+$level2: 2;
+$level3: 3;
+$level4: 4;
+$level5: 5;
+$fullPageModalZIndex: 1000;
+
+/* Speeds */
+$quick: .1s;
+$fast: .25s;
+$average: .4s;
+$slow: .65s;
+$slower: 1s;

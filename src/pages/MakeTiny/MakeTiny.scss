@@ -1,0 +1,68 @@
+.make-tiny {
+    text-align: center;
+
+    h1 {
+        font-size: 45px;
+        margin: 70px 0 40px 0;
+    }
+
+    input[type="text"] {
+        line-height: 40px;
+        padding: 0 15px;
+        font-size: 14px;
+        height: 40px;
+        border: 1px solid #404040;
+    }
+
+    .custom-text {
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .form-group-search {
+        display: inline-block;
+        width: 400px;
+        // display: none;
+
+
+        input[type="text"] {
+            float: left;
+            width: calc(100% - 90px);
+        }
+
+        button {
+            height: 40px;
+            width: 90px;
+            float: right;
+        }
+
+        &.with-alias {
+            display: inline-block;
+            width: 400px;
+            // display: none;
+
+            input[type="text"] {
+                width:100%;
+            }
+        }
+
+        .alias {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            margin-top: 15px;
+            label {
+                position: absolute;
+                line-height: 40px;
+                font-size: 12px;
+                left: 10px;
+                user-select: none;
+            }
+            input[type="text"] {
+                padding-left: 111px;
+                width: calc(100% - 105px);
+            }
+        }
+
+    }
+}

@@ -1,0 +1,32 @@
+button, a.button, input.button, label.button, span.button {
+    color: $white;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 2px;
+    border-bottom: 1px solid darken($blue, 5%);
+    background: $blue;
+    padding: 0 20px;
+    height: 30px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    transition: border-color $fast, background $fast;
+    line-height: 30px;
+    
+    &:active {
+        box-shadow: inset 0px 0px 5px #7d7575 !important;
+    }
+
+    &:hover {
+        border-color: $blue;
+        background: darken($blue, 5%);
+    }
+
+    &[disabled=disabled], &:disabled {
+        background: rgba(25, 34, 79, 0.8);
+        color: rgba(255, 255, 255, 0.3);
+        cursor: no-drop;
+    }
+}
