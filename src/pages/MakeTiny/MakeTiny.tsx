@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import MinifyResultOverlay from '../../components/MinifyResultOverlay/MinifyResultOverlay';
+import minifyUrl from '../../usecases/minifyUrl';
 
 /**
  * MakeTiny state interface.
@@ -9,6 +10,7 @@ interface MakeTinyState {
     showResults: boolean;
     url: string;
     alias: string;
+    hash: string;
 }
 
 class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
@@ -27,17 +29,20 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
         showResults: false,
         url: '',
         alias: '',
+        hash: '',
     }
 
     /**
      * Handles the click event on the tinify button.
      */
-    private onTinifyClicked() {
-        console.log('tinify clicked!');
-        this.setState({
-            showResults: true,
-        });
-
+    private async onTinifyClicked() {
+        if (this.state.url) {
+            const hash = await minifyUrl(this.state.url);
+            this.setState({
+                showResults: true,
+                hash,
+            });
+        }
     }
 
     /**
@@ -75,7 +80,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                     <button onClick={this.onTinifyClicked}>Tinify</button>
                 </div>
                 <p className="custom-text">Create <Link to="/custom">Custom URL</Link></p>
-                <MinifyResultOverlay onClose={this.onOverlayClosed} visible={this.state.showResults} originalUrl="http://www.google.com" hash="kasjdh" />
+                <MinifyResultOverlay onClose={this.onOverlayClosed} visible={this.state.showResults} originalUrl={this.state.url} hash={this.state.hash} />
             </div >
         );
     }

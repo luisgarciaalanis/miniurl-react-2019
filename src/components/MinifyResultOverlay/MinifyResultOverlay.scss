@@ -74,14 +74,23 @@
             cursor: pointer;
             border: 2px solid rgba(0, 0, 0, 0.7);
 
-            span::before {
+            span:before, span:after {
+                content: '';
+                display: inline-block;
+                width: 60%;
+                height: 2px;
+                background: #fff;
+                position: relative;
+            }
+
+            span:before {
                 -webkit-transform: rotate(45deg);
                 transform: rotate(45deg);
                 left: 0px;
                 top: -2px;
             }
 
-            span::after {
+            span:after {
                 -webkit-transform: rotate(-45deg);
                 transform: rotate(-45deg);
                 top: -18px;
