@@ -66,10 +66,11 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                         placeholder="Enter a URL"
                         onChange={this.onUrlInputChange}
                         value={this.state.url}
+                        maxLength={2083}
                     />
                     <div className="alias">
                         <label htmlFor="alias-input">http://m.garcia.tv/</label>
-                        <input type="text" name="urlinput" placeholder="Enter Alias" id="alias-input" />
+                        <input type="text" name="urlinput" placeholder="Enter Alias" maxLength={20} id="alias-input" />
                         <button>Tinify</button>
                     </div>
                 </div>
