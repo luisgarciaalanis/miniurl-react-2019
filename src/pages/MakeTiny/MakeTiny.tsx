@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
+import MinifyResultOverlay from '../../components/MinifyResultOverlay/MinifyResultOverlay';
 
 /**
  * MakeTiny state interface.
@@ -16,7 +17,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
 
         this.onTinifyClicked = this.onTinifyClicked.bind(this);
         this.onUrlInputChange = this.onUrlInputChange.bind(this);
-        this.onCloseResultsClicked = this.onCloseResultsClicked.bind(this);
+        this.onOverlayClosed = this.onOverlayClosed.bind(this);
     };
 
     /**
@@ -32,7 +33,11 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
      * Handles the click event on the tinify button.
      */
     private onTinifyClicked() {
-        console.log('tinify clicked!')
+        console.log('tinify clicked!');
+        this.setState({
+            showResults: true,
+        });
+
     }
 
     /**
@@ -47,7 +52,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
     /**
      * Overlay close button clicked.
      */
-    private onCloseResultsClicked() {
+    private onOverlayClosed() {
         this.setState({
             showResults: false,
         });
@@ -69,19 +74,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                     <button onClick={this.onTinifyClicked}>Tinify</button>
                 </div>
                 <p className="custom-text">Create <Link to="/custom">Custom URL</Link></p>
-                <div className={this.state.showResults ? 'miniurl-created' : 'hidden'}>
-                    <div className="overlay"></div>
-                    <div className="url-box">
-                        <span className="close" onClick={this.onCloseResultsClicked}><span></span></span>
-                        <h3 className="text-legendary">MiniURL was created!</h3>
-
-                        <span className="label">Original:</span>
-                        <span className="old-url">http://www.luizer.com/saludos/tipo1/holaholacarambola</span>
-
-                        <span className="label">Try it now:</span>
-                        <a className="new-url" href="www.google.com">http://m.garcia.tv/asdd</a>
-                    </div>
-                </div>
+                <MinifyResultOverlay onClose={this.onOverlayClosed} visible={this.state.showResults} originalUrl="http://www.google.com" hash="kasjdh" />
             </div >
         );
     }
