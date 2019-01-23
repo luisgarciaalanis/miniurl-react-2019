@@ -1,0 +1,15 @@
+name: clean
+description: cleans the application
+inputs:
+  appDir:
+    dir:
+      default: .
+run:
+  container:
+    image: { ref: 'node:10.15-alpine' }
+    dirs: { '/app': $(appDir) }
+    files:
+      /clean.sh:
+    cmd: ['/clean.sh']
+    workDir: '/app'
+    

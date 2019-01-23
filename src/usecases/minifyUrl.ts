@@ -14,7 +14,7 @@ const minifyUrl = async (url: string) => {
         url: url,
     };
 
-    const response = await fetch('http://localhost:7000/api/v1/shrink', {
+    const response = await fetch('http://miniurl-svc:7000/api/v1/shrink', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

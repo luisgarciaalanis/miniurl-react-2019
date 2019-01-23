@@ -1,0 +1,16 @@
+name: build
+description: builds the application bundle
+inputs:
+  appDir:
+    dir:
+      default: .
+run:
+  serial:
+    - op:
+        ref: init
+        inputs: { appDir }
+    - container:
+        image: { ref: 'node:10.15-alpine' }
+        dirs: { '/app': $(appDir) }
+        cmd: ['npm', 'run', 'build']
+        workDir: '/app'

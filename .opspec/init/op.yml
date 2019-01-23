@@ -1,0 +1,12 @@
+name: init
+description: inits the application
+inputs:
+  appDir:
+    dir:
+      default: .
+run:
+  container:
+    image: { ref: 'node:10.15-alpine' }
+    dirs: { '/app': $(appDir) }
+    cmd: ['npm', 'install']
+    workDir: '/app'

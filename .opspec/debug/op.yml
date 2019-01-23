@@ -1,0 +1,17 @@
+name: debug
+description: runs the application for debug
+inputs:
+  appDir:
+    dir:
+      default: .
+run:
+  serial:
+    - op:
+        ref: init
+        inputs: { appDir }
+    - container:
+        image: { ref: 'node:10.15-alpine' }
+        dirs: { '/app': $(appDir) }
+        cmd: ['npm', 'run', 'start']
+        workDir: '/app'
+        ports: { '3000':'3000' }
