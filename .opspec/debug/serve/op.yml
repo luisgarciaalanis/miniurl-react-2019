@@ -1,0 +1,14 @@
+name: serve
+description: serves the application
+inputs:
+  appDir:
+    dir:
+      default: .
+run:
+  container:
+    image: { ref: 'nginx:1.15' }
+    files:
+      { '/etc/nginx/nginx.conf':'/nginx.conf' }
+    dirs: { '/app': $(appDir) }
+    cmd: ['ls', '-la', '/etc/nginx/nginx.conf']
+    workDir: '/app'
