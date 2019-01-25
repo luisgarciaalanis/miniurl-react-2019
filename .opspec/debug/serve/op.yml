@@ -21,3 +21,4 @@ run:
         echo 'running nginx'
         nginx -g 'daemon off;'
     workDir: '/app'
+    ports: { '80':'80' }
