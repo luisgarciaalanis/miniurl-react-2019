@@ -3,6 +3,7 @@ import { RouteComponentProps, Link } from 'react-router-dom';
 import MinifyResultOverlay from '../../components/MinifyResultOverlay/MinifyResultOverlay';
 import minifyUrl from '../../usecases/minifyUrl';
 import { routes } from '../../Routes';
+import { HttpError, StatusCodes } from '../../core/http';
 
 /**
  * MakeTiny state interface.
@@ -12,6 +13,7 @@ interface MakeTinyState {
     url: string;
     alias: string;
     hash: string;
+    errorMsg: string;
 }
 
 class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
@@ -21,6 +23,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
         this.onTinifyClicked = this.onTinifyClicked.bind(this);
         this.onUrlInputChange = this.onUrlInputChange.bind(this);
         this.onOverlayClosed = this.onOverlayClosed.bind(this);
+        this.onUrlInputKeyUp = this.onUrlInputKeyUp.bind(this);
     };
 
     /**
@@ -31,6 +34,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
         url: '',
         alias: '',
         hash: '',
+        errorMsg: '',
     }
 
     /**
@@ -43,9 +47,22 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                 this.setState({
                     showResults: true,
                     hash,
+                    errorMsg: '',
                 });
             } catch (e) {
-                this.props.history.push(routes.UnexpectedError);
+                let handled = false;
+                if (e instanceof HttpError) {
+                    if (e.status === StatusCodes.BadRequest) {
+                        handled = true;
+                        this.setState({
+                            errorMsg: 'Invalid URL! Please try another one.',
+                        });
+                    }
+                }
+
+                if (!handled) {
+                    this.props.history.push(routes.UnexpectedError);
+                }
             }
         }
     }
@@ -57,6 +74,18 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
         this.setState({
             url: e.currentTarget.value,
         });
+    }
+
+    /**
+     * On key up trigger button on enter.
+     * @param e keyboard event.
+     */
+    private onUrlInputKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
+        e.preventDefault();
+
+        if (e.keyCode === 13) {
+            this.onTinifyClicked();
+        }
     }
 
     /**
@@ -79,10 +108,12 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                         name="urlinput"
                         placeholder="Enter a URL"
                         onChange={this.onUrlInputChange}
+                        onKeyUp={this.onUrlInputKeyUp}
                         value={this.state.url}
                         maxLength={2083}
                     />
                     <button onClick={this.onTinifyClicked}>Tinify</button>
+                    <div className={this.state.errorMsg ? 'error-msg' : 'hiden'}>{this.state.errorMsg}</div>
                 </div>
                 <p className="custom-text">Create <Link to="/custom">Custom URL</Link></p>
                 <MinifyResultOverlay onClose={this.onOverlayClosed} visible={this.state.showResults} originalUrl={this.state.url} hash={this.state.hash} />

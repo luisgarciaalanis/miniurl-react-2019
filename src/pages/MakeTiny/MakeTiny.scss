@@ -35,5 +35,17 @@
             width: 90px;
             float: right;
         }
+
+        .error-msg {
+            width: 100%;
+            text-align: left;
+            float: left;
+            background-color: $red;
+            border: 1px solid $black;
+            border-radius: 5px;
+            margin-top: 5px;
+            padding: 5px 7px;
+            color: $white;
+        }
     }
 }
