@@ -12,9 +12,3 @@ run:
     - op:
         ref: debug/serve
         inputs: { appDir }
-    # - container:
-    #     image: { ref: 'node:10.15-alpine' }
-    #     dirs: { '/app': $(appDir) }
-    #     cmd: ['npm', 'run', 'start']
-    #     workDir: '/app'
-    #     ports: { '3000':'3000' }
