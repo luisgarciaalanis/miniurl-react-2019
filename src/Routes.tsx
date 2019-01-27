@@ -5,6 +5,7 @@ import AppFrame from './components/AppFrame/AppFrame';
 import MakeTiny from './pages/MakeTiny/MakeTiny';
 import About from './pages/About/About';
 import NotFound from './pages/NotFound/NotFound';
+import UnexpectedError from './pages/UnexpectedError/UnexpectedError';
 import MakeCustomTiny from './pages/MakeCustomTiny/MakeCustomTiny';
 
 const history = createBrowserHistory();
@@ -17,6 +18,7 @@ const routes = {
     Custom: '/custom',
     About: '/about',
     NotFound: '/notfound',
+    UnexpectedError: '/unexpected',
 };
 
 class Routes extends React.Component {
@@ -30,6 +32,7 @@ class Routes extends React.Component {
                             <Route exact path={routes.Custom} component={MakeCustomTiny} />
                             <Route exact path={routes.About} component={About} />
                             <Route exact path={routes.NotFound} component={NotFound} />
+                            <Route exact path={routes.UnexpectedError} component={UnexpectedError} />
                             <Redirect from='*' to={routes.Home} />
                         </Switch>
                     </AppFrame>
