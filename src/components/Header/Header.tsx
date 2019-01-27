@@ -8,6 +8,7 @@ class Header extends React.Component {
                 <ul className="mu-nav-bar">
                     <li><Link to="/">MiniURL</Link></li>
                     <li><Link to="/custom">Custom</Link></li>
+                    <li><Link to="/notfound">Not Found</Link></li>
                 </ul>
                 <ul className="mu-nav-bar mv-nav-bar-right">
                     <li><Link to="/about">About</Link></li>
