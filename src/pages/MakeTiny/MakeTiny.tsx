@@ -48,6 +48,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                     showResults: true,
                     hash,
                     errorMsg: '',
+                    url: '',
                 });
             } catch (e) {
                 let handled = false;
