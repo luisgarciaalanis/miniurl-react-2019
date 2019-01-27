@@ -8,17 +8,9 @@ run:
   container:
     image: { ref: 'nginx:1.15' }
     files:
-      { '/etc/nginx/nginx.conf': $(/nginx.conf) }
+      '/etc/nginx/nginx.conf': $(/nginx.conf)
+      '/run.sh':
     dirs: { '/app': $(appDir) }
-    cmd:
-      - sh
-      - -ce
-      - |
-        ls -la /etc/nginx/nginx.conf
-        echo 'cat nginx configuration (START)'
-        cat /etc/nginx/nginx.conf
-        echo 'cat nginx configuration (DONE)'
-        echo 'running nginx'
-        nginx -g 'daemon off;'
+    cmd: ['/run.sh']
     workDir: '/app'
     ports: { '80':'80' }
