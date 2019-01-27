@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import MinifyResultOverlay from '../../components/MinifyResultOverlay/MinifyResultOverlay';
 import minifyUrl from '../../usecases/minifyUrl';
+import { routes } from '../../Routes';
 
 /**
  * MakeTiny state interface.
@@ -37,11 +38,15 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
      */
     private async onTinifyClicked() {
         if (this.state.url) {
-            const hash = await minifyUrl(this.state.url);
-            this.setState({
-                showResults: true,
-                hash,
-            });
+            try {
+                const hash = await minifyUrl(this.state.url);
+                this.setState({
+                    showResults: true,
+                    hash,
+                });
+            } catch (e) {
+                this.props.history.push(routes.UnexpectedError);
+            }
         }
     }
 

@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import AppFrame from './components/AppFrame/AppFrame';
 import MakeTiny from './pages/MakeTiny/MakeTiny';
 import About from './pages/About/About';
 import NotFound from './pages/NotFound/NotFound';
 import UnexpectedError from './pages/UnexpectedError/UnexpectedError';
 import MakeCustomTiny from './pages/MakeCustomTiny/MakeCustomTiny';
-
-const history = createBrowserHistory();
 
 /**
  * Application routes.
@@ -43,4 +40,4 @@ class Routes extends React.Component {
 }
 
 export default Routes;
-export { history, routes };
+export { routes };

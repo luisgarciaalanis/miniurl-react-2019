@@ -16,6 +16,10 @@ class Http {
             body: JSON.stringify(payload),
         });
 
+        if (!response.ok) {
+            throw new Error(`http POST failed with status: ${response.status}`);
+        }
+
         return await response.json<T>();
     }
 }
