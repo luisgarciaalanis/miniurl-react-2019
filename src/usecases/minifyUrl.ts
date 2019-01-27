@@ -1,4 +1,8 @@
-import 'whatwg-fetch';
+import http from '../core/http';
+
+interface ShrinkPayload {
+    url: string;
+}
 
 interface ShrinkResponse {
     hash: string;
@@ -14,15 +18,8 @@ const minifyUrl = async (url: string) => {
         url: url,
     };
 
-    const response = await fetch('http://miniurl-svc:7000/api/v1/shrink', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-    });
+    const shrinkResponse = await http.post<ShrinkPayload, ShrinkResponse>('http://miniurl-svc:7000/api/v1/shrink', payload)
 
-    const shrinkResponse = await response.json<ShrinkResponse>();
     return shrinkResponse.hash;
 }
 
