@@ -43,7 +43,9 @@ class Http {
         });
 
         if (!response.ok) {
-            throw new HttpError('http POST failed', response.status);
+            const errorPayload: any = await response.json<T>();
+            const msg = errorPayload.message || 'POST failed';
+            throw new HttpError(msg, response.status);
         }
 
         return await response.json<T>();

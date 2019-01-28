@@ -45,17 +45,24 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                 this.setState({
                     showResults: true,
                     hash,
-                    errorMsg: '',
-                    url: '',
                 });
             } catch (e) {
                 let handled = false;
                 if (e instanceof HttpError) {
-                    if (e.status === StatusCodes.BadRequest) {
-                        handled = true;
-                        this.setState({
-                            errorMsg: 'Invalid URL! Please try another one.',
-                        });
+                    handled = true;
+                    switch (e.status) {
+                        case StatusCodes.BadRequest:
+                            this.setState({
+                                errorMsg: 'Invalid URL! Please try another one.',
+                            });
+                            break;
+                        case StatusCodes.Conflict:
+                            this.setState({
+                                errorMsg: e.message,
+                            });
+                            break;
+                        default:
+                            handled = false;
                     }
                 }
 
@@ -91,6 +98,9 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
     private onOverlayClosed() {
         this.setState({
             showResults: false,
+            url: '',
+            hash: '',
+            errorMsg: '',
         });
     }
 
@@ -115,6 +125,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                             name="urlinput"
                             placeholder="Enter Alias"
                             onChange={this.onAliasInputChange}
+                            value={this.state.hash}
                             maxLength={20}
                             id="alias-input"
                         />
