@@ -11,7 +11,6 @@ import { HttpError, StatusCodes } from '../../core/http';
 interface MakeTinyState {
     showResults: boolean;
     url: string;
-    alias: string;
     hash: string;
     errorMsg: string;
 }
@@ -32,7 +31,6 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
     public readonly state: Readonly<MakeTinyState> = {
         showResults: false,
         url: '',
-        alias: '',
         hash: '',
         errorMsg: '',
     }
@@ -47,8 +45,6 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                 this.setState({
                     showResults: true,
                     hash,
-                    errorMsg: '',
-                    url: '',
                 });
             } catch (e) {
                 let handled = false;
@@ -95,6 +91,9 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
     private onOverlayClosed() {
         this.setState({
             showResults: false,
+            url: '',
+            hash: '',
+            errorMsg: '',
         });
     }
 
