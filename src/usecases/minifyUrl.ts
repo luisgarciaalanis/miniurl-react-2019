@@ -23,4 +23,4 @@ const minifyUrl = async (url: string) => {
     return shrinkResponse.hash;
 }
 
-export default minifyUrl;
+export { minifyUrl };

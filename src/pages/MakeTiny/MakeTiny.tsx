@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import MinifyResultOverlay from '../../components/MinifyResultOverlay/MinifyResultOverlay';
-import minifyUrl from '../../usecases/minifyUrl';
+import { minifyUrl } from '../../usecases/minifyUrl';
 import { routes } from '../../Routes';
 import { HttpError, StatusCodes } from '../../core/http';
 
@@ -112,7 +112,7 @@ class MakeTiny extends React.Component<RouteComponentProps<{}>, MakeTinyState> {
                         value={this.state.url}
                         maxLength={2083}
                     />
-                    <button onClick={this.onTinifyClicked}>Tinify</button>
+                    <button id="tinify" onClick={this.onTinifyClicked}>Tinify</button>
                     <div className={this.state.errorMsg ? 'error-msg' : 'hiden'}>{this.state.errorMsg}</div>
                 </div>
                 <p className="custom-text">Create <Link to="/custom">Custom URL</Link></p>
