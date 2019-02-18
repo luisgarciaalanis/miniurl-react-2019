@@ -14,4 +14,4 @@ run:
     dirs: { "/app": $(appDir) }
     cmd: ["/run.sh"]
     workDir: "/app"
-    ports: { "80": "80" }
+    ports: { "7000": "80" }

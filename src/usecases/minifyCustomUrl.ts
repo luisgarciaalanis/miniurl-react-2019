@@ -1,5 +1,4 @@
 import http from '../core/http';
-import { miniUrlSvc } from '../core/constants';
 
 interface ShrinkPayload {
     url: string;
@@ -21,7 +20,7 @@ const minifyCustomUrl = async (url: string, hash: string) => {
         hash,
     };
 
-    const shrinkResponse = await http.post<ShrinkPayload, ShrinkResponse>(`${miniUrlSvc}/api/v1/shrink`, payload)
+    const shrinkResponse = await http.post<ShrinkPayload, ShrinkResponse>('/api/v1/shrink', payload)
 
     return shrinkResponse.hash;
 }
