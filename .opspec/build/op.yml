@@ -1,16 +1,40 @@
 name: build
-description: builds the application bundle
+description: builds the docker container.
 inputs:
   appDir:
     dir:
       default: .
+  dockerhubUsername:
+    string:
+      constraints: { minLength: 1 }
+      description: Dockerhub registry username
+      isSecret: true
+  dockerhubPassword:
+    string:
+      constraints: { minLength: 1 }
+      description: Dockerhub registry password
+      isSecret: true
+  imageTag:
+    string:
+      constraints: { minLength: 1 }
+      description: image tag name
 run:
   serial:
     - op:
-        ref: init
+        ref: compile
         inputs: { appDir }
-    - container:
-        image: { ref: 'node:10.15-alpine' }
-        dirs: { '/app': $(appDir) }
-        cmd: ['npm', 'run', 'build']
-        workDir: '/app'
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/docker.image.build#2.1.0 }
+        inputs:
+          imageName: "luisgarciaalanis/miniurl-react:$(imageTag)"
+          dockerfile: $(/Dockerfile)
+          context: $(appDir)
+        outputs: { imageTar }
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/docker.image.push#2.1.0 }
+        inputs:
+          imageTar:
+          imageName: "luisgarciaalanis/miniurl-react:$(imageTag)"
+          username: $(dockerhubUsername)
+          password: $(dockerhubPassword)
+          registry: docker.io

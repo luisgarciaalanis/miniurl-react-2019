@@ -7,11 +7,11 @@ inputs:
 run:
   container:
     name: miniurl
-    image: { ref: 'nginx:1.15' }
+    image: { ref: "nginx:1.15" }
     files:
-      '/etc/nginx/nginx.conf': $(/nginx.conf)
-      '/run.sh':
-    dirs: { '/app': $(appDir) }
-    cmd: ['/run.sh']
-    workDir: '/app'
-    ports: { '80':'80' }
+      "/etc/nginx/nginx.conf": $(/nginx.conf)
+      "/run.sh":
+    dirs: { "/app": $(appDir) }
+    cmd: ["/run.sh"]
+    workDir: "/app"
+    ports: { "80": "80" }
