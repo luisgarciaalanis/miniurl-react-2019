@@ -1,0 +1,17 @@
+name: test
+description: runs application tests
+inputs:
+  appDir:
+    dir:
+      default: .
+run:
+  serial:
+    - op:
+        ref: init
+        inputs: { appDir }
+    - container:
+        image: { ref: "node:stretch-slim" }
+        name: miniurl-test
+        dirs: { "/app": $(appDir) }
+        cmd: ["npm", "run", "test-ci"]
+        workDir: "/app"

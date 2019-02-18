@@ -30,7 +30,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "test-ci": "CI=true npx react-scripts test --env=jsdom"
   },
   "eslintConfig": {
     "extends": "react-app"
