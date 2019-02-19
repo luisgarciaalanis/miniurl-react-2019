@@ -11,6 +11,10 @@ body {
 html, body {
   height: 100%;
   background: #12255a;
+}
+
+#root {
+  min-height: 100%;
   background-image: linear-gradient(135deg, #12255a 0%, #1d8e9b 100%);
 }
 
