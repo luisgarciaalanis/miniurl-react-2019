@@ -15,5 +15,75 @@
         }
         padding: 50px;
         margin-top: 50px;
+
+        a {
+            color: #1b7f91;
+        }
+
+        p {
+            padding-bottom: 15px;
+        }
+
+        .info-box {
+            display: inline-block;
+            border: 1px solid  #196783;
+            margin-right: 30px;
+            margin-bottom: 30px;
+            vertical-align:top;
+
+            h3 {  
+                background-color: #196783;
+                text-align: center;
+                padding: 5px 0px;
+                color: $soft-gray;
+            }
+
+            li {
+                padding: 5px 0px;
+                margin: 0px 15px;
+            }
+        }
+
+        .src-info {
+            margin-bottom: 15px;
+            h2 {
+                margin-bottom: 15px;
+            }
+
+            .url-info {
+                display: block;
+                margin-bottom: 7px;
+                a {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        .how-run {
+            h3 {    
+                margin-bottom: 15px;
+            }
+
+            h2 {
+                margin-bottom: 15px;
+            }
+
+            ol {
+                list-style-type: decimal;
+                list-style-position: inside;
+                li {
+                    padding-bottom: 10px;
+                    ul {
+                        list-style-type: disc;
+                        list-style-position: inside;
+                        padding-left: 30px;
+                        padding-top: 15px;
+                        li {
+                            padding-top: 0px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
