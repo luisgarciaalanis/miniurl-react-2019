@@ -5,7 +5,6 @@ import { routes } from '../../Routes';
 class Header extends React.Component<RouteComponentProps> {
     render() {
         const path = this.props.location.pathname;
-        console.log(path);
         return (
             <header className="header">
                 <ul className="mu-nav-bar">
